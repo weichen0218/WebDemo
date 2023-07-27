@@ -20,20 +20,76 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
+
+const emailField = document.querySelector('.email'),
+emailInput = emailField.querySelector('input'),
+passwordField = document.querySelector('.password'),
+passwordInput = passwordField.querySelector('input');
+
 const login = document.getElementById('login');
 login.addEventListener("click", function(event){
   
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  if (emailInput.value == ''){
+    emailField.classList.add('error');
+  }
 
-  signInWithEmailAndPassword(auth, email, password).then(function (userCredential) {
-    const user = userCredential.user;
-    window.location.href = 'success.html';
-  })
-  .catch(function (error) {
-    let error_code = error.code;
-    let error_message = error.message;
-    alert(error_message);
-  });
+  if (passwordInput.value == ''){
+    passwordField.classList.add('error');
+  }
+
+  // signInWithEmailAndPassword(auth, email, password).then(function (userCredential) {
+  //   const user = userCredential.user;
+  //   window.location.href = 'success.html';
+  // })
+  // .catch(function (error) {
+  //   let error_code = error.code;
+  //   let error_message = error.message;
+  //   alert(error_message);
+  // });
 })
 
+emailField.onkeyup = () =>{
+  const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm");
+  const isValidEmail = emailRegex.test(emailInput.value);
+  if (isValidEmail){
+    emailField.classList.remove('error');
+   
+  }else{
+    emailField.classList.add('error');
+    let errorTxt = emailField.querySelector('.error-text');
+    (errorTxt.value != '') ? errorTxt.innerText = 'Enter a valid email address' : errorTxt.innerText = "Email can't be blank";
+  }
+}
+
+passwordField.onkeyup = () =>{
+  const passwordRegex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/);
+  const isValidPassword = passwordRegex.test(passwordInput.value);
+  if (isValidPassword){
+    passwordField.classList.remove('error');
+  }else{
+    passwordField.classList.add('error');
+    let errorTxt = passwordField.querySelector('.error-text');
+    // bug
+    (errorTxt.value != '') ? errorTxt.innerText = 'Please enter atleast 6 charatcer with number and letter.' : errorTxt.innerText = "Password can't be blank";
+    console.log(errorTxt.value);
+  }
+}
+
+// function validate_email(email){
+//   const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm");
+//   const isValidEmail = emailRegex.test(email);
+  
+//   if (isValidEmail == true){
+//     return true;
+//   }else {
+//     return false;
+//   }
+// }
+
+// function validate_password(password) {
+//   if (password < 6) {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }

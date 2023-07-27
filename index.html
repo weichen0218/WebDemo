@@ -28,22 +28,23 @@
         <!-- <label for="email_address" class="email_address">
           Email Address
         </label> -->
-        <div class="input-box">
-          
-          <input type="email" id="email" placeholder="Email" required />
-          <i class="bx bxs-user"></i>
+        <div class="field email">
+          <div class="input-box">
+            <input type="email" placeholder="Email" required />
+            <i class='bx bx-envelope'></i>
+          </div>
+          <span class="error error-text">Email can't be blank.</span>
         </div>
-
-        <div class="input-box">
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            required
-          />
-          <i class="bx bxs-lock-alt"></i>
-          <i id="checkEye" class="fa-solid fa-eye-slash"></i>
+        
+        <div class="field password">
+          <div class="input-box">
+            <input type="password" placeholder="Password" required />
+            <i class="bx bxs-lock-alt"></i>
+            <i id="checkEye" class="fa-solid fa-eye-slash"></i>  
+          </div>
+          <span class="error error-text">Password can't be blank.</span>
         </div>
+        
 
         <div class="remember-forget">
           <label> <input type="checkbox" /> Remember me </label>
