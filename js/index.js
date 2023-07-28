@@ -1,8 +1,8 @@
 $("#checkEye").click(function () {
   if($(this).hasClass('fa-eye-slash')){
-     $("#password").attr('type', 'text');
+     $(".password input").attr('type', 'text');
   }else{
-     $("#password").attr('type', 'password');
+     $(".password input").attr('type', 'password');
   }
   $(this).toggleClass('fa-eye-slash').toggleClass('fa-eye');
 }); 
